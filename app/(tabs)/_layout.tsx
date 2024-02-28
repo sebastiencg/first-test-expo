@@ -1,11 +1,12 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
+import {Link, Redirect, Tabs} from 'expo-router';
 import { Pressable } from 'react-native';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import {MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -16,6 +17,10 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
+
+  /*if (true) {
+  return <Redirect href="/login" />;
+  }*/
   const colorScheme = useColorScheme();
 
   return (
@@ -29,8 +34,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Chat',
+          tabBarIcon: ({ color }) => <FontAwesome name="comments" size={28} style={{ marginBottom: -3, color }} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -50,8 +55,15 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Image',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="image" size={28} style={{ marginBottom: -3, color }} />,
+        }}
+      />
+      <Tabs.Screen
+        name="three"
+        options={{
+          title: 'PDF',
+          tabBarIcon: ({ color }) => <MaterialIcons name="picture-as-pdf" size={28} style={{ marginBottom: -3, color }} />,
         }}
       />
     </Tabs>
